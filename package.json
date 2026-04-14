@@ -9,12 +9,12 @@
     "allureReport": "npx allure open allure-report",
     "test:allure": "rm -rf allure-results allure-report; npx playwright test --project=chromium; npx allure generate -o allure-report ./allure-results; npx allure open allure-report"
   },
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@argos-ci/cli": "^4.1.4",
     "@faker-js/faker": "^10.4.0",
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.3.0"
