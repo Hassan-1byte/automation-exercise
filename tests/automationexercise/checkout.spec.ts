@@ -1,5 +1,7 @@
 import { test, Page } from "@playwright/test";
 import { PageManager } from "../../core/PageManager";
+import { argosScreenshot } from "@argos-ci/playwright";
+
 
 test.beforeEach(async ({ page }) => {
     await page.goto("/login")
@@ -14,5 +16,7 @@ test('Checkout the Products', async ({ page }) => {
     const pm = new PageManager(page)
     const homePage = await pm.goToCheckOutPage();
     await homePage.CheckoutProducts()
+    await argosScreenshot(page, "Checkout page")
+
 
 })

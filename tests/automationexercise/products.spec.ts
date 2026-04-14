@@ -1,5 +1,7 @@
 import { test } from "@playwright/test";
 import { PageManager } from "../../core/PageManager";
+import { argosScreenshot } from "@argos-ci/playwright";
+
 
 test.beforeEach(async ({ page }) => {
     await page.goto("/")
@@ -34,6 +36,8 @@ test.describe('Product browsing & discovery behavior.', () => {
         const pm = new PageManager(page)
         const homePage = await pm.goToProductPage()
         await homePage.VerifyProductInfo()
+        await argosScreenshot(page, "Product page")
+
     })
 
     test('Category filtering', async ({ page }) => {

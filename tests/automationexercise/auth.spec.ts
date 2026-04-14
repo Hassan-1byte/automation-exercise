@@ -27,7 +27,6 @@ test.describe("All authentication & account entry flows.", () => {
 
         const pm = new PageManager(page);
         const authPage = await pm.goToAuthPage();
-        await argosScreenshot(page, "auth page")
 
         // Auth Page - Sign-Up new user Method
         await authPage.New_User_Signup();
@@ -65,7 +64,6 @@ test.describe("All authentication & account entry flows.", () => {
 
         // Auth Page - Login with Invalid Cred Method
         await authPage.loginWithValidCred("HassanX@test.com", "Xakistan123")
-        await argosScreenshot(page, "auth page")
 
 
     })
@@ -77,7 +75,6 @@ test.describe("All authentication & account entry flows.", () => {
 
         // Auth Page - Login Method
         await authPage.logout("Hassan1@test.com", "pakistan123")
-        await argosScreenshot(page, "auth page")
 
 
     })
@@ -89,8 +86,6 @@ test.describe("All authentication & account entry flows.", () => {
 
         // Auth Page - Sign-Up new user Method
         await authPage.registerWithExistingEmail()
-        await argosScreenshot(page, "auth page")
-
 
 
     })
