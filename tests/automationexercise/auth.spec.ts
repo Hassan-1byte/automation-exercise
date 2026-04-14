@@ -1,6 +1,8 @@
 import { test } from "@playwright/test"
 import { PageManager } from "../../core/PageManager"
 import { faker } from "@faker-js/faker"
+import { argosScreenshot } from "@argos-ci/playwright";
+
 
 
 test.beforeEach(async ({ page }) => {
@@ -12,19 +14,20 @@ test.describe("All authentication & account entry flows.", () => {
     test("Register new user", async ({ page }) => {
 
         // ---> Faker Test Data start here
-            const randomFirstName = faker.person.firstName()
-            // const randomLastName = faker.person.lastName()
-            const randomCompany = faker.company.name()
-            // const randomStreet = faker.person.jobArea()
-            // const randomCountry = faker.location.country()
-            // const randomState = faker.location.state()
-            // const randomCity = faker.location.city()
-            // const randomZip = faker.location.zipCode()
-            // const randomMobile = faker.phone.number()
+        const randomFirstName = faker.person.firstName()
+        // const randomLastName = faker.person.lastName()
+        const randomCompany = faker.company.name()
+        // const randomStreet = faker.person.jobArea()
+        // const randomCountry = faker.location.country()
+        // const randomState = faker.location.state()
+        // const randomCity = faker.location.city()
+        // const randomZip = faker.location.zipCode()
+        // const randomMobile = faker.phone.number()
         // ---> Faker Test Data End here
 
         const pm = new PageManager(page);
         const authPage = await pm.goToAuthPage();
+        await argosScreenshot(page, "auth page")
 
         // Auth Page - Sign-Up new user Method
         await authPage.New_User_Signup();
@@ -62,6 +65,8 @@ test.describe("All authentication & account entry flows.", () => {
 
         // Auth Page - Login with Invalid Cred Method
         await authPage.loginWithValidCred("HassanX@test.com", "Xakistan123")
+        await argosScreenshot(page, "auth page")
+
 
     })
 
@@ -72,6 +77,8 @@ test.describe("All authentication & account entry flows.", () => {
 
         // Auth Page - Login Method
         await authPage.logout("Hassan1@test.com", "pakistan123")
+        await argosScreenshot(page, "auth page")
+
 
     })
 
@@ -82,6 +89,8 @@ test.describe("All authentication & account entry flows.", () => {
 
         // Auth Page - Sign-Up new user Method
         await authPage.registerWithExistingEmail()
+        await argosScreenshot(page, "auth page")
+
 
 
     })
@@ -93,6 +102,8 @@ test.describe("All authentication & account entry flows.", () => {
 
         // Auth Page - Login Method
         await authPage.loginWithValidCred("Hassan1@test.com", "pakistan123")
+        await argosScreenshot(page, "auth page")
+
 
     })
 
