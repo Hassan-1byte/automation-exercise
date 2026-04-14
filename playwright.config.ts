@@ -1,4 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
+import { createArgosReporterOptions } from "@argos-ci/playwright/reporter";
+
 
 export default defineConfig({
 
@@ -14,7 +16,17 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   
   reporter: [
-    ['list'],
+    process.env.CI ? ["dot"] : ["list"],
+    [
+      "@argos-ci/playwright/reporter",
+      createArgosReporterOptions({
+        // Upload to Argos on CI only.
+        uploadToArgos: !!process.env.CI,
+
+        // Set your Argos token (required if not using GitHub Actions).
+        token: "argos_3e6e650d57a54f0d185266d76c3f33fc6b",
+      }),
+    ],
     ['allure-playwright', { outputFolder: 'allure-results' }]
     //['html']
   ],
@@ -76,8 +88,6 @@ export default defineConfig({
   //   command: 'npm run start',
   //   url: 'https://localhost:4200'
   // }
-
-
 
 });
 
